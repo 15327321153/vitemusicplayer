@@ -1,34 +1,27 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside class="aside">
-        <div class="logobox">
-          <img class="logo" src="./assets/logo.jpg" alt="" />
-        </div>
-        <div class="barbox">
-          <div  :class="item.click"  v-for="(item,index) in data" @click="changber(index)">
-            <svg class="icon" aria-hidden="true">
-              <use :xlink:href="`#icon-${item.click === 'baritem' ?item.icon:item.clickIcon}`"></use>
-            </svg>
-            <div class="bar-text">{{ item.text }}</div>
-          </div>
-        </div>
-      </el-aside>
-      <el-main class="mian"> </el-main>
+      <tabbar :data="data"></tabbar>
+      <el-main class="mian">
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { reactive } from 'vue';
-// type datatype {
-//   text:String,
-//   icon:String,
-//   router:String
-// }
+import tabbar from './components/tabbar.vue';
 
+type tabtpye = {
+  text:string,
+  icon:string,
+  click:string,
+  clickIcon:string,
+  router:string
+}
 
-const data = reactive([{
+const data = reactive<tabtpye[]>([{
   text:'主页',
   icon:'home',
   clickIcon:'home-click',
@@ -38,33 +31,28 @@ const data = reactive([{
   text:'排行榜',
   icon:'top',
   clickIcon:'top-click',
-  router:'/',
+  router:'/top',
   click:'baritem'
 },{
   text:'歌单',
   icon:'offer',
   clickIcon:'offer-click',
-  router:'/',
+  router:'/offer',
   click:'baritem'
 },{
   text:'MV',
   icon:'mv',
   clickIcon:'mv-click',
-  router:'/',
+  router:'/mv',
   click:'baritem'
 },{
   text:'歌手',
   icon:'my',
   clickIcon:'my-click',
-  router:'/',
+  router:'/my',
   click:'baritem'
 }])
 
-const changber = (indexs)=>{
-  data.forEach((item,index)=>{
-    indexs === index? item.click = 'baritem-click':item.click = 'baritem'
-  })
-}
 </script>
 
 <style lang="less" scoped>
