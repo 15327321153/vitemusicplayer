@@ -13,6 +13,15 @@
 import { reactive } from 'vue';
 import tabbar from './components/tabbar.vue';
 
+
+import { onMounted } from 'vue'
+ 
+onMounted(() => {
+  document.body.style.setProperty('--el-color-primary', 'rgb(250,50,80)');
+
+})
+
+
 type tabtpye = {
   text:string,
   icon:string,
