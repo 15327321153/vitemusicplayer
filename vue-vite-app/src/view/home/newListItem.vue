@@ -53,11 +53,17 @@ const { data} = defineProps<{
             .title{
                 padding: 15% 20px 10px 20px;
                 font-size: 16px;
+                white-space:nowrap;
+                text-overflow:ellipsis;
+                overflow: hidden;
             }
             .name{
                 font-size: 14px;
                 color: rgb(61, 61, 61);
                 padding: 0 20px 10px 20px;
+                white-space:nowrap;
+                text-overflow:ellipsis;
+                overflow: hidden;
             }
             .tips{
                 position: absolute;

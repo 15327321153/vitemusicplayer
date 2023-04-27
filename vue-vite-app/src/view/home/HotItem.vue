@@ -1,7 +1,19 @@
 <template>
+  
+
   <div class="hotbody">
 
-    <div class="hotitem" v-for="item in listData" :key="item.coverImgUrl">
+    <el-skeleton style="width: 15%;" v-for="item in 5"  animated v-if="iscode">
+    <template #template>
+      <el-skeleton-item variant="image" style="width: 100%; height: 320px;border-radius: 10px;" />
+      <div style="padding: 14px 0">
+        <el-skeleton-item variant="p" style="width: 50%" />
+        <el-skeleton-item variant="text" style="margin-right: 16px" />
+      </div>
+    </template>
+  </el-skeleton>
+    
+    <div class="hotitem" v-for="item in listData" :key="item.coverImgUrl"  v-else>
       <div class="top">
         <div class="imgdiv">
           <img :src="item.coverImgUrl" alt="" />
@@ -12,7 +24,6 @@
       </div>
       <div class="bom">
         <div class="title">{{item.name}}</div>
-
         <a href="#" v-for="(items,indexs) in item.tags" :key="indexs">#{{ items }}</a>
       </div>
     </div>
@@ -21,8 +32,9 @@
 
 <script lang="ts" setup>
 
-const { listData } = defineProps<{
+const { listData,iscode } = defineProps<{
   listData: any;
+  iscode:boolean;
 }>();
 
 </script>
@@ -76,6 +88,9 @@ const { listData } = defineProps<{
     .bom {
       .title {
         margin: 5px;
+        white-space:nowrap;
+                text-overflow:ellipsis;
+                overflow: hidden;
       }
 
       a {
