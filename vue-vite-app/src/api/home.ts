@@ -17,3 +17,11 @@ export const hotplaylist = (limit = 6, order = 'hot', cat = '', offset = 0) => {
 export const newlist = ( area = 'all' ) => {
     return request.get(`/top/album?limit=20&offset=0&area=${area}`)
 }
+//榜单
+export const topall = ( ) => {
+    return request.get(`/toplist`)
+}
+//歌单
+export const detail = ( id:number ) => {
+    return request.get(`/playlist/track/all?id=${id}&limit=10&offset=1`)
+}
