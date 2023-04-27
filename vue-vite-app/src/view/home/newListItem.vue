@@ -1,13 +1,13 @@
 <template>
   <div class="newbody"> 
-    <div class="newitem" v-for="item in 12">
+    <div class="newitem" v-for="item in data" :key="item.blurPicUrl">
         <div class="left">
-            <img src="../../assets/logo.jpg" alt="">
+            <img :src="item.blurPicUrl" alt="">
         </div>
         <div class="right">
-            <div class="title">认真的雪</div>
-            <div class="name">薛之谦</div>
-            <div class="tips">new</div>
+            <div class="title">{{ item.name }}</div>
+            <div class="name">{{ item.company }}</div>
+            <div class="tips">{{ item.type }}</div>
         </div>
     </div>
 
@@ -15,6 +15,11 @@
 </template>
 
 <script lang="ts" setup>
+const { data} = defineProps<{
+    data: any;
+
+
+}>();
 
 </script>
 

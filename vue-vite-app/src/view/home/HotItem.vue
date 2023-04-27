@@ -25,8 +25,6 @@ const { listData } = defineProps<{
   listData: any;
 }>();
 
-console.log(listData)
-
 </script>
 
 <style lang="less" scoped>
