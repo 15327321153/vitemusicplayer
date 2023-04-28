@@ -25,3 +25,11 @@ export const topall = ( ) => {
 export const detail = ( id:number ) => {
     return request.get(`/playlist/track/all?id=${id}&limit=10&offset=1`)
 }
+//MV
+export const mvfirst = ( area:string,limit=12 ) => {
+    return request.get(`/mv/first?limit=${limit}&area=${area}`)
+}
+//电台
+export const djhot = () => {
+    return request.get(`/dj/hot`)
+}

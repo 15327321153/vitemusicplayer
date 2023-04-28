@@ -1,7 +1,7 @@
 <template>
-  <tabs :data="data.tabsData" :title="data.title" @switchs="onswitchs">
+  <tabs :data="data.tabsData" :title="data.title" @switchs="onswitchs" >
     <FancyButton> 
-      <newListItem :data="data.newListData"></newListItem>
+      <newListItem :data="data.newListData" :iscode="data.iscode"></newListItem>
     </FancyButton>
   </tabs>
 </template>
@@ -18,12 +18,12 @@ const data = reactive({
     {name:'欧美',type:'EA'},
     {name:'日本',type:'KR'},
     {name:'韩国',type:'JP'}],
-    newListData:[]
-
+    newListData:[],
+    iscode:true
 })
 
 const onswitchs = (index:number)=>{
-
+    data.iscode = true
 data.tabsData.forEach((item,i)=>{
        if(index === i){
            item.class = 'tabclick'
@@ -33,6 +33,7 @@ data.tabsData.forEach((item,i)=>{
    })
 
    newlist(data.tabsData[index].type).then(res=>{
+    data.iscode= false
         if(res.code === 200 ) data.newListData = res.monthData.slice(0,12)
     })
 
@@ -45,6 +46,7 @@ data.tabsData.forEach((item,i)=>{
 onMounted(() => {
     onswitchs(0)
     newlist().then(res=>{
+        data.iscode= false
         if(res.code === 200 ) data.newListData = res.monthData.slice(0,12)
     })
 });
