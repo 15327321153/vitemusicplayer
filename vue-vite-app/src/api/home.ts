@@ -33,3 +33,7 @@ export const mvfirst = ( area:string,limit=12 ) => {
 export const djhot = () => {
     return request.get(`/dj/hot`)
 }
+//热门歌手
+export const geshou = () => {
+    return request.get(`/top/artists?offset=0&limit=48`)
+}

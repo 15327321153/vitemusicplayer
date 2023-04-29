@@ -129,4 +129,5 @@ const data = reactive<tabtpye[]>([{
     }
   }
 }
+
 </style>
