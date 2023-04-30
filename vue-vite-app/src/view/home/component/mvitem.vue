@@ -74,6 +74,7 @@ if(number>=10000){
         transform: translate(50%, -50%);
         z-index: 2;
         visibility: hidden;
+        
         transition-property: width,visibility;
         transition-duration: 0.5s;
         transition-timing-function:linear;

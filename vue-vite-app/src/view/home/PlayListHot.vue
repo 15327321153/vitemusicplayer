@@ -32,14 +32,17 @@ const onswitchs = (index:number)=>{
     hotplaylist(6,'hot',data.tabsData[index].name,0).then(res=>{
       data.iscode = false
       if(res.code === 200) data.listData = res.playlists
+      console.log(res.playlists)
     })
     
 }
+
 onMounted(() => {
   playlist().then((res) => {
     if (res.code === 200) {
       
       data.tabsData = res.tags;
+      
     }
   }).then(()=>{
     

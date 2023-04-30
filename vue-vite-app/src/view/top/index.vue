@@ -4,34 +4,39 @@
       <Topexplain></Topexplain>
       <tables></tables>
     </div>
-    
-    <toplist class="topbang"></toplist>
+
+    <toplists class="topbang" ></toplists>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Topexplain from './components/topexplain.vue';
+
 import tables from './components/tables.vue'
-import toplist from './components/toplist.vue'
+import toplists from './components/toplist.vue'
+
+
+
+
 
 
 </script>
 
 <style lang="less" scoped>
-.body{
+.body {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
 
-  .letf{
+  .letf {
     width: 100%;
   }
-  .topbang{
+
+  .topbang {
     width: 470px;
     flex-grow: 0;
-    flex-shrink:0;
+    flex-shrink: 0;
     // padding: 0 10px;
   }
 }
-
 </style>

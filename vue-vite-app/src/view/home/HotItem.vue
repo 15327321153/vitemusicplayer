@@ -19,7 +19,7 @@
           <img :src="item.coverImgUrl" alt="" />
         </div>
         <div class="zx999">
-          🎧47.1万/42首
+          🎧{{jisuan(item.playCount)}}/{{item.commentCount}}首
         </div>
       </div>
       <div class="bom">
@@ -36,6 +36,13 @@ const { listData,iscode } = defineProps<{
   listData: any;
   iscode:boolean;
 }>();
+const jisuan = (number)=>{
+if(number>=10000){
+    return (number/10000).toFixed(1)+'万'
+}else{
+    return number
+}
+}
 
 </script>
 

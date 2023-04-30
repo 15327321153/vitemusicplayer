@@ -1,57 +1,78 @@
 <template>
   <div class="topexplainbody">
     <div class="img">
-      <img src="../../../assets/logo.jpg" alt="" />
+      <img :src="store.$state.data.coverImgUrl" alt="" />
     </div>
     <div class="explain">
       <el-card class="box-card">
         <div class="explain1">
-          <h3 class="title">飙升榜</h3>
-          <span class="update">(04月29日 更新)</span>
+          <h3 class="title">{{ store.$state.data.name }}</h3>
+          <span class="update">{{ store.$state.data.updateFrequency }}</span>
         </div>
         <div class="explain2">
           <div class="minimg">
-            <img src="../../../assets/logo.jpg" alt="" />
+            <img :src="store.$state.all.creator?.avatarUrl" alt="" />
           </div>
-          <span class="name">网易云影月</span>
-          <span class="tiem">2014-06-30</span>
+          <span class="name">{{ store.$state.all.creator?.nickname }}</span>
+          <span class="tiem">{{ timestampToDate(store.$state.all.createTime) }}</span>
         </div>
         <div class="explain3">
           <span>
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-my"></use>
+              <use xlink:href="#icon-erji1"></use>
             </svg>
             <div>
-              <span>3000</span>
+              <span>{{jisuan(store.$state.data.playCount)}}</span>
+            </div>
+          </span>
+          <span>
+            <svg class="icon" aria-hidden="true" style="width: 20px;">
+              <use xlink:href="#icon-shoucang"></use>
+            </svg>
+            <div>
+              <span>{{jisuan(store.$state.data.subscribedCount)}}</span>
             </div>
           </span>
           <span>
             <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-my"></use>
+              <use xlink:href="#icon-pinglun"></use>
             </svg>
             <div>
-              <span>3000</span>
-            </div>
-          </span>
-          <span>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-my"></use>
-            </svg>
-            <div>
-              <span>3000</span>
+              <span>{{jisuan(store.$state.all.commentCount)}}</span>
             </div>
           </span>
         </div>
         <h5 class="txttitle">歌单简介</h5>
         <div class="txt">
-            asdasdsdasd
+            {{ store.$state.data.description }}
         </div>
       </el-card>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import {useTop} from '../../../store/index'
+const store = useTop()
+
+const timestampToDate = (timestamp) =>{
+  const date = new Date(timestamp);
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+
+const jisuan = (number)=>{
+if(number>=10000){
+    return (number/10000).toFixed(1)+'万'
+}{
+    return number
+}
+}
+
+</script>
 
 <style lang="less" scoped>
 .topexplainbody {
