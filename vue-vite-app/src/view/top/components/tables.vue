@@ -33,8 +33,8 @@
         <div class="tiem heartxt">时长</div>
       </div>
       <div class="tbody">
-        <div class="titem" v-for="(item,index) in store.getlist(0)" :class="index%2?'bc':''" :key="index">
-          <div class="sortitem txt">{{ index+1 }}</div>
+        <div class="titem" v-for="(item,index) in store.getlist(data.index)" :class="index%2?'bc':''" :key="index">
+          <div class="sortitem txt">{{ data.index*20+index+1 }}</div>
           <div class="iconbofang" @mouseover="iconchange(true,'b')" @mouseout="iconchange(false,'b')">
           <svg class="icon" aria-hidden="true" style="width: 25px;">
           <use
@@ -63,13 +63,9 @@
         </div>
       </div>
       <div class="tfoot">
-        <div class="tfootindex">&lt;</div>
-        <div class="tfootindex">1</div>
-        <div class="tfootindex">2</div>
-        <div class="tfootindex">3</div>
-        <div class="tfootindex">4</div>
-        <div class="tfootindex">5</div>
-        <div class="tfootindex">&gt;</div>
+        <div class="tfootindex" @click="altered('left' )">&lt;</div>
+        <div class="tfootindex" v-for="(item,index) in store.getnumber()" :key="index" @click="change(index)" :class="index === data.index?'xuanzhong':''">{{ index+1 }}</div>
+        <div class="tfootindex" @click="altered('right')">&gt;</div>
       </div>
     </div>
     
@@ -85,7 +81,8 @@ const data = reactive({
   data:[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
   iconbofang:'#icon-bofang-copy',
   iconadd:'#icon-tianjiaadd142-copy',
-  iconshouchang:'#icon-shoucang'
+  iconshouchang:'#icon-shoucang',
+  index:0
 })
 
 const test = ()=>{
@@ -102,6 +99,16 @@ function formatTime(milliseconds) {
 onMounted(()=>{
 
 })
+const change = (index:number)=>{
+data.index = index
+}
+const altered = (str:string)=>{
+  if(str === 'left' && data.index !=0 ){
+    data.index --
+  }else if(str === 'right' && data.index != store.getnumber()-1){
+    data.index ++
+  }
+}
 
 const iconchange = (bool:boolean,str:string) => {
   if(str === 'b'){
@@ -307,19 +314,28 @@ const iconchange = (bool:boolean,str:string) => {
 
         .txt{
           font-size: 14px;
+          overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow:ellipsis;
         }
 
       }
     }
     .tfoot{
       display: flex;
-      width: 200px;
+      // width: 200px;
       flex-flow: row nowrap;
-      justify-content: space-between;
+      justify-content: start;
       margin: 40px 0 20px 0;
       .tfootindex{
         font-size: 13px;
+        margin: 0 5px;
         cursor: pointer;
+      }
+      .xuanzhong{
+        color: rgb(47, 121, 182);
+        font-size: 16px;
       }
       .tfootindex:hover{
         color: rgb(47, 121, 182);

@@ -6,7 +6,8 @@ export const useTop = defineStore('useTop',{
         return({
             data:{},
             index:0,
-            all:{}
+            all:{},
+            indexs:0,
         })
     },
     actions:{
@@ -19,6 +20,10 @@ export const useTop = defineStore('useTop',{
         },
         getlist(number){
             return this.all.tracks?.slice(number*20,(number+1)*20)
+        },
+        getnumber(){
+
+            return Math.ceil(((this.all?.tracks?.length)?(this.all?.tracks?.length):20)/20)
         }
     }
 })
