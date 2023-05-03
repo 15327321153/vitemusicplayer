@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts" setup>
-import Topexplain from './components/topexplain.vue';
+import Topexplain from '../../components/topexplain.vue';
 
-import tables from './components/tables.vue'
+import tables from '../../components/tables.vue'
 import toplists from './components/toplist.vue'
 
 

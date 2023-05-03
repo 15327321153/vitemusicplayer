@@ -17,13 +17,25 @@ export const useTop = defineStore('useTop',{
             toplists(data.id).then(res =>{
                 this.all = res.playlist
             })
+            console.log("???",this.all)
         },
-        getlist(number){
-            return this.all.tracks?.slice(number*20,(number+1)*20)
+        getlist(){
+            return this.all.tracks?.slice(this.indexs*20,(this.indexs+1)*20)
         },
         getnumber(){
 
             return Math.ceil(((this.all?.tracks?.length)?(this.all?.tracks?.length):20)/20)
+        },
+        getindexs(type:string,value?:number){
+            if(type==='get'){
+                return this.indexs
+            }else if(type==='set'){
+                this.indexs = value
+            }else if(type==='add'){
+                this.indexs++
+            }else if(type==='reduce'){
+                this.indexs--
+            }
         }
     }
 })

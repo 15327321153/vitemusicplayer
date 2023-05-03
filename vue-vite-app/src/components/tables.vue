@@ -75,7 +75,7 @@
 
 <script lang='ts' setup>
 import { reactive ,onMounted} from 'vue'
-import { useTop } from '../../../store/index'
+import { useTop } from '../store/index'
 const store = useTop()
 const data = reactive({
   data:[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],

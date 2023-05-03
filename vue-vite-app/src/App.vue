@@ -5,14 +5,16 @@
       <el-main class="mian">
         <router-view></router-view>
       </el-main>
+      <foot class="foot"></foot>
     </el-container>
+    
   </div>
 </template>
 
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import tabbar from './components/tabbar.vue';
-
+import foot from './components/foot.vue';
 
 import { onMounted } from 'vue'
  
@@ -65,69 +67,14 @@ const data = reactive<tabtpye[]>([{
 </script>
 
 <style lang="less" scoped>
-.aside {
-  width: 300px;
-  .logobox {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    .logo {
-      width: 150px;
-      margin: 50px 0;
-      border-radius: 10px;
-    }
-  }
-  .barbox {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-around;
-    align-items: center;
-    height: 400px;
-    width: 300px;
-    .baritem {
-      height: 40px;
-      width: 200px;
-      border-radius: 10px;
-      padding: 10px;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      .icon{
-        background-color: #fff;
-        padding:3px 10px;
-        border-radius: 5px;
-        box-shadow:0px 0px 10px 0px rgba(143, 143, 143, 0.5)  ;
-
-      }
-      .bar-text{
-        margin: 0 0 0 10px;
-        color: #747474;
-      }
-      
-    }
-    .baritem-click {
-      height: 40px;
-      width: 200px;
-      border-radius: 10px;
-      background-color: #fff;
-      padding: 10px;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      box-shadow:0px 0px 10px 0px rgba(143, 143, 143, 0.5)  ;
-      .icon{
-        background-color: rgb(250,50,80);
-        padding:3px 10px;
-        border-radius: 5px;
-
-      }
-      .bar-text{
-        margin: 0 0 0 10px;
-
-      }
-      
-    }
+.common-layout{
+  // position: relative;
+  .foot{
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    bottom: 0px;
+    // left: -10px;
   }
 }
-
 </style>

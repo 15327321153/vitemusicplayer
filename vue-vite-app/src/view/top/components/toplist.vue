@@ -47,7 +47,8 @@ const changes = (index) => {
     })
 
     store.changeStateeTop(data.data[index], index)
-    // console.log("???",store.$state.all.creator.nickname)
+    store.getindexs('set',0)
+    
 }
 const switchs = (type) => {
     if (type === 'TOP榜') {
@@ -68,7 +69,7 @@ const switchs = (type) => {
         data.class[2]='baritem-click'
     }
     changes(0)
-    
+    store.getindexs('set',0)
 
 }
 
