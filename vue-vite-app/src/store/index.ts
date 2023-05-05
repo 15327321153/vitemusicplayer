@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia';
 import {toplists} from '../api/top'
+import { mp3 } from '../api/song';
 
 export const useTop = defineStore('useTop',{
     state:()=>{
@@ -8,6 +9,9 @@ export const useTop = defineStore('useTop',{
             index:0,
             all:{},
             indexs:0,
+            mp3:new Audio(),
+            songitem:{},
+            sope: true,
         })
     },
     actions:{
@@ -36,6 +40,31 @@ export const useTop = defineStore('useTop',{
             }else if(type==='reduce'){
                 this.indexs--
             }
+        },
+         getpaly(item){
+             mp3(item.id).then(res=>{
+                console.log(res)
+                this.mp3 =  new Audio(res.data[0].url)
+                this.songitem = item
+                this.bofang()
+            })
+          
+   
+
+        },
+        getmp3(){
+            return{
+                mp3:this.mp3,
+                songitem:this.songitem
+            }
+        },
+        bofang(){
+            if(this.sope){
+                this.mp3.play();
+              }else{
+                this.mp3.pause();
+              }
+              this.sope = !this.sope
         }
     }
 })

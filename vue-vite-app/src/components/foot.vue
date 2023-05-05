@@ -8,11 +8,11 @@
     />
     <div class="fa">
       <div class="img">
-        <img src="../assets/logo.jpg" alt="" />
+        <img :src="store.getmp3().songitem?.al?.picUrl" alt="" />
       </div>
       <div class="title">
-        <span class="name">认真的雪</span>
-        <span class="airname">薛之谦</span>
+        <span class="name">{{ store.getmp3().songitem.al?.name }}</span>
+        <span class="airname"><span v-for="itema in store.getmp3().songitem.ar">{{ itema.name }}</span></span>
       </div>
       <div class="time">00：00/03：24</div>
       <div class="icons">
@@ -20,11 +20,11 @@
           <use xlink:href="#icon-shangyiqu"></use>
         </svg>
 
-        <svg class="icon" aria-hidden="true" v-if="data.sope" @click="bofang">
+        <svg class="icon" aria-hidden="true" v-if="store.$state.sope" @click="store.bofang">
           <use xlink:href="#icon-mv-red"></use>
         </svg>
 
-        <svg class="icon" aria-hidden="true" v-else @click="bofang">
+        <svg class="icon" aria-hidden="true" v-else @click="store.bofang">
           <use xlink:href="#icon-sope"></use>
         </svg>
 
@@ -76,22 +76,23 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive } from "vue";
-
+import { computed, onMounted, reactive } from "vue";
+import {useTop} from '../store/index'
+const store = useTop()
 const data = reactive({
   value1: 0,
   shengying:100,
   max: 100,
   min: 0,
-  sope: true,
+
   jinyin: {
     type: true,
     value: 0,
   },
-  mp3: new Audio(
-    "http://m7.music.126.net/20230504012403/761149d5bdb32a21feef13e15cdf79eb/ymusic/0fd6/4f65/43ed/a8772889f38dfcb91c04da915b301617.mp3"
-  ),
+
 });
+
+
 
 //静音功能
 const jinying = () => {
@@ -105,14 +106,14 @@ const jinying = () => {
   data.jinyin.type = !data.jinyin.type;
 };
 
-const bofang = () => {
-  if(data.sope){
-    data.mp3.play();
-  }else{
-    data.mp3.pause();
-  }
-  data.sope = !data.sope
-};
+// const bofang = () => {
+//   if(store.$state.sope){
+//     data.mp3.play();
+//   }else{
+//     data.mp3.pause();
+//   }
+//   store.$state.sope = !store.$state.sope
+// };
 // data.jinyin.type = computed(()=>{
 //   if(data.shengying>0){
 //     return true
@@ -175,12 +176,12 @@ const setvalue = () => {
       }
     }
     .time {
-      line-height: 60px;
+      line-height: 70px;
       font-size: 14px;
       color: #606266;
     }
     .icons {
-      margin: 12px 0;
+      margin: 15px 0;
       .icon {
         cursor: pointer;
         width: 50px;
@@ -191,15 +192,15 @@ const setvalue = () => {
       width: 180px;
       display: flex;
       .icon {
-        margin: 12px 10px;
+        margin: 17px 10px;
         cursor: pointer;
       }
       .slider {
-        margin: 25px 10px;
+        margin: 30px 10px;
       }
     }
     .button {
-      margin: 12px 0;
+      margin: 15px 0;
       .icon {
         margin: 0 10px;
         cursor: pointer;
