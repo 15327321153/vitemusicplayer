@@ -1,18 +1,19 @@
 <template>
-  <div class="common-layout">
+  <div class="common-layout" @mousemove="calculateDistance">
     <el-container>
+
       <tabbar :data="data"></tabbar>
       <el-main class="mian">
         <router-view></router-view>
       </el-main>
-      <foot class="foot"></foot>
+      <foot class="foot" :class="animate.class"></foot>
     </el-container>
     
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import tabbar from './components/tabbar.vue';
 import foot from './components/foot.vue';
 
@@ -64,6 +65,26 @@ const data = reactive<tabtpye[]>([{
   click:'baritem'
 }])
 
+const animate = reactive({
+  class:'',
+  distanceToBottom :0,
+
+})
+
+const calculateDistance = (event)=>{
+  animate.distanceToBottom = window.innerHeight - event.clientY;
+}
+
+animate.class = computed(()=>{
+  if(animate.distanceToBottom < 50){ 
+    return'move-up'
+}else{
+  return'move-down'
+      
+
+  }
+})
+
 </script>
 
 <style lang="less" scoped>
@@ -74,7 +95,39 @@ const data = reactive<tabtpye[]>([{
     width: 100%;
     z-index: 999;
     bottom: 0px;
-    // left: -10px;
+
+  }
+  .move-down {
+  animation-name: slideDown;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  
+}
+.move-up{
+  animation-name: slideUp;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes slideUp {
+  from {
+    bottom: -65px;
+  }
+  to {
+    bottom: 0;
   }
 }
+}
+
+@keyframes slideDown {
+  from {
+    bottom: 0;
+  }
+  to {
+    bottom: -65px;
+  }
+}
+
 </style>

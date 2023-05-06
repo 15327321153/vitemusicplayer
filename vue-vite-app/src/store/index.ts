@@ -16,7 +16,9 @@ export const useTop = defineStore('useTop', {
                 type: true,
                 value: 0,
             },
-            shengying: 100
+            shengying: 100,
+            time:0,
+            maxtime:100
         })
     },
     actions: {
@@ -50,7 +52,10 @@ export const useTop = defineStore('useTop', {
             mp3(item.id).then(res => {
                 console.log(res)
                 this.mp3 = new Audio(res.data[0].url)
+                this.maxtime = res.data[0].time
+
                 this.songitem = item
+
                 this.bofang()
             })
 
@@ -68,6 +73,8 @@ export const useTop = defineStore('useTop', {
                 this.mp3.pause();
             }
             this.sope = !this.sope
+
+            this.settime()
         },
         jinying() {
             if (this.jinyin.type) {
@@ -91,6 +98,19 @@ export const useTop = defineStore('useTop', {
         },
         changeshengying(){
             this.mp3.volume = this.shengying/100
+          },
+        settime(){
+            setTimeout(() => {
+              this.time = this.time + 500;
+              if (this.time < this.maxtime && !this.sope) {
+                this.settime();
+              }
+            }, 500);
+          },
+          changslider(){
+
+            this.mp3.currentTime = this.time/1000;
+            this.bofang()
           }
     }
 })

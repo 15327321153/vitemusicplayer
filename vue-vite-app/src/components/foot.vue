@@ -1,10 +1,11 @@
 <template>
   <div class="footbody">
     <el-slider
-      v-model="data.value1"
+      v-model="store.$state.time"
       class="slider"
-      :min="data.min"
-      :max="data.max"
+      :min="0"
+      :max="store.$state.maxtime"
+      @change="changslider"
     />
     <div class="fa">
       <div class="img">
@@ -14,7 +15,7 @@
         <span class="name">{{ store.getmp3().songitem.al?.name }}</span>
         <span class="airname"><span v-for="itema in store.getmp3().songitem.ar">{{ itema.name }}</span></span>
       </div>
-      <div class="time">00：00/03：24</div>
+      <div class="time">{{ formatTime(store.$state.time/1000) }}/{{ formatTime(store.$state.maxtime/1000) }}</div>
       <div class="icons">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-shangyiqu"></use>
@@ -67,7 +68,7 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-SmallWindow"></use>
         </svg>
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" @click="test">
           <use xlink:href="#icon-16gl-M"></use>
         </svg>
       </div>
@@ -76,56 +77,44 @@
 </template>
 
 <script lang="ts" setup>
+
 import { computed, onMounted, reactive } from "vue";
 import {useTop} from '../store/index'
+import{formatTime} from '../utils/uitlis' 
 const store = useTop()
 const data = reactive({
-  value1: 0,
-
-  max: 100,
-  min: 0,
-
- 
 
 });
 
 
-
-//静音功能
-
-
-// const bofang = () => {
-//   if(store.$state.sope){
-//     data.mp3.play();
-//   }else{
-//     data.mp3.pause();
-//   }
-//   store.$state.sope = !store.$state.sope
-// };
-// data.jinyin.type = computed(()=>{
-//   if(data.shengying>0){
-//     return true
-//   }else{
-//     return false
-//   }
-// })
-//音量调节
+const changslider = () =>{
+  store.changslider()
+}
 
 
-const setvalue = () => {
-  setTimeout(() => {
-    data.value1 = data.value1 + 1;
-    if (data.value1 < 1800) {
-      setvalue();
-    }
-  }, 1000);
-};
+
+
 </script>
 
 <style lang="less" scoped>
+.footbody:hover {
+  animation-name: moveDown;
+  animation-duration: 2s;
+  animation-iteration-count: infinite; 
+}
+@keyframes moveDown {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 50px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
 .footbody {
   background-color: #ffffff;
-
   height: 70px;
 
   .slider {
