@@ -37,21 +37,21 @@
         <svg
           class="icon"
           aria-hidden="true"
-          v-if="data.jinyin.type"
-          @click="jinying"
+          v-if="store.getjy('type')"
+          @click="store.jinying"
         >
           <use xlink:href="#icon-yinliang"></use>
         </svg>
-        <svg class="icon" aria-hidden="true" v-else @click="jinying">
+        <svg class="icon" aria-hidden="true" v-else @click="store.jinying">
           <use xlink:href="#icon-jinyin"></use>
         </svg>
 
         <el-slider
-          v-model="data.shengying"
+          v-model="store.$state.shengying"
           class="slider"
           :min="0"
           :max="100"
-          @input="changeshengying"
+          @input="store.changeshengying"
         />
       </div>
       <div class="button">
@@ -81,30 +81,18 @@ import {useTop} from '../store/index'
 const store = useTop()
 const data = reactive({
   value1: 0,
-  shengying:100,
+
   max: 100,
   min: 0,
 
-  jinyin: {
-    type: true,
-    value: 0,
-  },
+ 
 
 });
 
 
 
 //静音功能
-const jinying = () => {
-  if (data.jinyin.type) {
-    data.jinyin.value = data.shengying;
-    data.shengying = 0;
-    
-  } else {
-    data.shengying = data.jinyin.value;
-  }
-  data.jinyin.type = !data.jinyin.type;
-};
+
 
 // const bofang = () => {
 //   if(store.$state.sope){
@@ -122,9 +110,7 @@ const jinying = () => {
 //   }
 // })
 //音量调节
-const changeshengying = ()=>{
-  data.mp3.volume = data.shengying/100
-}
+
 
 const setvalue = () => {
   setTimeout(() => {
