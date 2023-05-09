@@ -24,18 +24,12 @@
 </template>
 
 <script  lang="ts" setup>
-
+import {jisuan} from '../utils/uitlis'
 const { data } = defineProps<{
     data: any;
 }>();
 
-const jisuan = (number)=>{
-if(number>=10000){
-    return (number/10000).toFixed(1)+'万'
-}else{
-    return number
-}
-}
+
 
 </script>
 

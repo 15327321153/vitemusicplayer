@@ -68,8 +68,16 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-SmallWindow"></use>
         </svg>
-        <svg class="icon" aria-hidden="true" @click="test">
+        <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-16gl-M"></use>
+        </svg>
+
+
+        <svg class="icon" aria-hidden="true" @click="suo" v-if="data.suo">
+          <use xlink:href="#icon-jiesuo"></use>
+        </svg>
+        <svg class="icon" aria-hidden="true" @click="suo" v-else>
+          <use xlink:href="#icon-suoding"></use>
         </svg>
       </div>
     </div>
@@ -83,8 +91,16 @@ import {useTop} from '../store/index'
 import{formatTime} from '../utils/uitlis' 
 const store = useTop()
 const data = reactive({
-
+  suo:true
 });
+const emit=defineEmits([
+    'el-child'
+])
+const suo = ()=>{
+  data.suo = !data.suo
+  emit('el-child',data.suo)
+}
+
 
 
 const changslider = () =>{

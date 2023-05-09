@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import tabs from "../../components/tabs.vue";
-import HotItem from "../../components/songitem.vue";
+import HotItem from "../../components/HotItem.vue";
 import { playlist ,hotplaylist } from "../../api/home";
 import { onMounted, reactive } from "vue";
 

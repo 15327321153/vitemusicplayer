@@ -5,4 +5,14 @@ export const formatTime = (timestamp:number) => {
     const seconds = date.getUTCSeconds().toString().padStart(2, '0');
     return `${minutes}:${seconds}`;
   }
-  
+
+
+
+//转为万为单位
+export const jisuan = (number)=>{
+    if(number>=10000){
+        return (number/10000).toFixed(1)+'万'
+    }else{
+        return number
+    }
+    }

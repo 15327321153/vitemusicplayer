@@ -6,14 +6,14 @@
       <el-main class="mian">
         <router-view></router-view>
       </el-main>
-      <foot class="foot" :class="animate.class"></foot>
+      <foot class="foot" :class="move" @el-child="changes"></foot>
     </el-container>
     
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive } from 'vue';
 import tabbar from './components/tabbar.vue';
 import foot from './components/foot.vue';
 
@@ -68,17 +68,21 @@ const data = reactive<tabtpye[]>([{
 const animate = reactive({
   class:'',
   distanceToBottom :0,
-
+  suo:true
 })
 
 const calculateDistance = (event)=>{
   animate.distanceToBottom = window.innerHeight - event.clientY;
 }
+const changes = (bool)=>{
+  animate.suo = bool
+}
 
-animate.class = computed(()=>{
-  if(animate.distanceToBottom < 50){ 
+const move = computed(()=>{
+  if(animate.class === 'move-up' && animate.distanceToBottom < 100) return
+  if(animate.distanceToBottom < 100  && animate.suo ){ 
     return'move-up'
-}else{
+}else if(animate.distanceToBottom > 100 && animate.suo){
   return'move-down'
       
 
@@ -102,6 +106,7 @@ animate.class = computed(()=>{
   animation-duration: 1s;
   animation-delay: 2s;
   animation-fill-mode: forwards;
+  animation-iteration-count: 1;
   
 }
 .move-up{

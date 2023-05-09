@@ -50,6 +50,7 @@ onMounted(()=>{
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
+        height: 100%;
         .img{
         // border: 1px solid red;
         width: 24%;

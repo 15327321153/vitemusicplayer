@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { reactive ,onMounted } from 'vue'
 import tabs from '../../components/tabs.vue'
-import mvitemVue from './component/mvitem.vue'
+import mvitemVue from '../../components/mvitem.vue'
 import {mvfirst} from '../../api/home'
 
 

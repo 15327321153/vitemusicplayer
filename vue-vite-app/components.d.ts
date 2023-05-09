@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     Foot: typeof import('./src/components/foot.vue')['default']
     HotItem: typeof import('./src/components/HotItem.vue')['default']
+    Mvitem: typeof import('./src/components/mvitem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Songitem: typeof import('./src/components/songitem.vue')['default']

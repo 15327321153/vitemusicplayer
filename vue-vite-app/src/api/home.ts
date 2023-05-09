@@ -34,6 +34,6 @@ export const djhot = () => {
     return request.get(`/dj/hot`)
 }
 //热门歌手
-export const geshou = () => {
-    return request.get(`/top/artists?offset=0&limit=48`)
+export const geshou = (limit=48) => {
+    return request.get(`/top/artists?offset=0&limit=${limit}`)
 }
