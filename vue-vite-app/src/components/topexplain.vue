@@ -1,12 +1,12 @@
 <template>
   <div class="topexplainbody">
     <div class="img">
-      <img :src="store.$state.data.coverImgUrl" alt="" />
+      <img :src="store.$state.all.coverImgUrl" alt="" />
     </div>
     <div class="explain">
       <el-card class="box-card">
         <div class="explain1">
-          <h3 class="title">{{ store.$state.data.name }}</h3>
+          <h3 class="title">{{ store.$state.all.name }}</h3>
           <span class="update">{{ store.$state.data.updateFrequency }}</span>
         </div>
         <div class="explain2">
@@ -22,7 +22,7 @@
               <use xlink:href="#icon-erji1"></use>
             </svg>
             <div>
-              <span>{{jisuan(store.$state.data.playCount)}}</span>
+              <span>{{jisuan(store.$state.all.playCount)}}</span>
             </div>
           </span>
           <span>
@@ -30,7 +30,7 @@
               <use xlink:href="#icon-shoucang"></use>
             </svg>
             <div>
-              <span>{{jisuan(store.$state.data.subscribedCount)}}</span>
+              <span>{{jisuan(store.$state.all.subscribedCount)}}</span>
             </div>
           </span>
           <span>
@@ -44,7 +44,7 @@
         </div>
         <h5 class="txttitle">歌单简介</h5>
         <div class="txt">
-            {{ store.$state.data.description }}
+            {{ store.$state.all.description }}
         </div>
       </el-card>
     </div>
@@ -71,6 +71,7 @@ if(number>=10000){
     return number
 }
 }
+console.log("{}",store.$state.all)
 
 </script>
 

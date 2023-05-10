@@ -28,7 +28,7 @@ export const useTop = defineStore('useTop', {
             toplists(data.id).then(res => {
                 this.all = res.playlist
             })
-            console.log("???", this.all)
+  
         },
         getlist() {
             return this.all.tracks?.slice(this.indexs * 20, (this.indexs + 1) * 20)

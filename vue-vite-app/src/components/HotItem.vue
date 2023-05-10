@@ -15,7 +15,7 @@
     
     <div class="hotitem" v-for="item in listData" :key="item.coverImgUrl"  v-else>
       <div class="top">
-        <div class="imgdiv">
+        <div class="imgdiv" @click="tooffers(item.id)">
           <img :src="item.coverImgUrl" alt="" />
         </div>
         <div class="zx999">
@@ -31,7 +31,8 @@
 </template>
 
 <script lang="ts" setup>
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const { listData,iscode } = defineProps<{
   listData: any;
   iscode:boolean;
@@ -42,6 +43,10 @@ if(number>=10000){
 }else{
     return number
 }
+}
+const tooffers = (id) =>{
+  router.push(`/offers/${id}`)
+console.log(id)
 }
 
 </script>
@@ -55,7 +60,7 @@ if(number>=10000){
 
   .hotitem {
     width: 15%;
-
+    cursor: pointer;
     .top {
       width: 100%;
       position: relative;

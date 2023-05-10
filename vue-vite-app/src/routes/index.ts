@@ -4,6 +4,9 @@ import Top from '../view/top/index.vue'
 import Mv from '../view/mv/index.vue'
 import My from '../view/my/index.vue'
 import Offer from '../view/offer/index.vue'
+import Offers from '../view/offers/index.vue'
+
+
 
 
 const router = createRouter({
@@ -33,6 +36,12 @@ const router = createRouter({
         path: '/offer',
         name: 'Offer',
         component: Offer,
+      },
+      {
+        path: '/offers/:id',
+        name: 'Offers',
+        component: Offers,
+        props:true
       },
 
     ],
