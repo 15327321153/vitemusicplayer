@@ -5,7 +5,7 @@ import Mv from '../view/mv/index.vue'
 import My from '../view/my/index.vue'
 import Offer from '../view/offer/index.vue'
 import Offers from '../view/offers/index.vue'
-
+import video from '../view/video/index.vue'
 
 
 
@@ -43,6 +43,13 @@ const router = createRouter({
         component: Offers,
         props:true
       },
+      {
+        path: '/video/:mvid',
+        name: 'Video',
+        component: video,
+        props:true
+      },
+
 
     ],
   })
