@@ -6,6 +6,7 @@ import My from '../view/my/index.vue'
 import Offer from '../view/offer/index.vue'
 import Offers from '../view/offers/index.vue'
 import video from '../view/video/index.vue'
+import Song from '../view/video/index.vue'
 
 
 
@@ -47,6 +48,12 @@ const router = createRouter({
         path: '/video/:mvid',
         name: 'Video',
         component: video,
+        props:true
+      },
+      {
+        path: '/song/:songid',
+        name: 'Song',
+        component: Song,
         props:true
       },
 

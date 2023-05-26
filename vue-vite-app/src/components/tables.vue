@@ -76,7 +76,7 @@
           </div>
 
           <div class="airnameitem txt">
-            <span v-for="items in item.ar">{{ items.name }}/</span>
+            <span v-for="items in item.ar" @click="tosong()">{{ items.name }}/</span>
           </div>
           <div class="zuanjiitem txt">{{ item.al.name }}</div>
           <div class="tiemitem txt">{{ formatTime(item.dt) }}</div>
@@ -126,26 +126,7 @@ import { useTop } from "../store/index";
 const store = useTop();
 const data = reactive({
   data: [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
+ 
   ],
   iconbofang: "#icon-bofang-copy",
   iconadd: "#icon-tianjiaadd142-copy",
@@ -194,6 +175,7 @@ const iconchange = (bool: boolean, str: string) => {
   }
 
 };
+console.log(store.getlist())
 </script>
 
 <style lang="less" scoped>
